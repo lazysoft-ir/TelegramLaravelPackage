@@ -13,5 +13,31 @@
         }
     ],
     "minimum-stability": "beta",
-    "require": {}
+    "autoload-dev": {
+        "psr-4": {
+            "Lazysoft\\Wufor\\Tests\\": "tests/",
+            "Lazysoft\\Wufor\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lazysoft\\Wufor\\WuforServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.5",
+        "laravel/legacy-factories": "^1.0.4",
+        "phpunit/phpunit": "^9.5.10"
+    },
+    "require": {
+        "php": "^8.1",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^9",
+        "doctrine/dbal": "^2.12"
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
 }
