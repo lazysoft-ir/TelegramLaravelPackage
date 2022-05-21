@@ -1,30 +1,20 @@
 <?php
 
 return [
-    /*
-    |--------------------------------------------------------------------------
-    | Telescope Path
-    |--------------------------------------------------------------------------
-    |
-    | This is the URI path where Telescope will be accessible from. Feel free
-    | to change this path to anything you like. Note that the URI will not
-    | affect the paths of its internal API that aren't exposed to users.
-    |
-    */
 
+    // route prefixes
     "path" => "telegram",
-
-    /*
-    |--------------------------------------------------------------------------
-    | Telescope Route Middleware
-    |--------------------------------------------------------------------------
-    |
-    | These middleware will be assigned to every Telescope route, giving you
-    | the chance to add your own middleware to this list or change any of
-    | the existing middleware. Or, you can simply stick with this list.
-    |
-    */
-
+    // route middlewares
     "api_middleware" => ["api"],
     "web_middleware" => ["web"],
+
+    //
+    "bots" => explode(',', env('WOFUR_BOT_TOKENS')),
+
+    // if you need proxy
+    "proxy" => env('WOFUR_PROXY', null),
+
+    // if you want to use file system and share files between bots
+    "file_share_group" => env('WOFUR_FILE_SHARE_GROUP_ID', null),
+
 ];
