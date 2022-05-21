@@ -1,0 +1,17 @@
+{
+    "name": "lazysoft/wufor",
+    "description": "wufor is a Telegram Bot Api/Tdlib manager for laravel",
+    "autoload": {
+        "psr-4": {
+            "Lazysoft\\Wufor\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mohammad Javad Ghasemy",
+            "email": "geeksesi@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {}
+}
