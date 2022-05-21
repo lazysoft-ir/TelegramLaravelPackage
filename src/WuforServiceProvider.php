@@ -17,6 +17,8 @@ class WuforServiceProvider extends ServiceProvider
         Route::middlewareGroup("wufor_api", config("wufor.api_middleware", []));
         Route::middlewareGroup("wufor_web", config("wufor.web_middleware", []));
         $this->registerRoutes();
+        $this->registerPublishing();
+        $this->loadMigrationsFrom(__DIR__ . "/../database/migrations");
     }
 
     /**
@@ -54,5 +56,29 @@ class WuforServiceProvider extends ServiceProvider
                 $this->loadRoutesFrom(__DIR__ . "/../config/routes/web.php");
             }
         );
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    private function registerPublishing()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->publishes(
+                [
+                    __DIR__ . "/../database/migrations" => database_path("migrations"),
+                ],
+                "wofur-migrations"
+            );
+
+            $this->publishes(
+                [
+                    __DIR__ . "/../config/wufor.php" => config_path("wufor.php"),
+                ],
+                "wofur-config"
+            );
+        }
     }
 }
