@@ -4,6 +4,8 @@ namespace Lazysoft\Wufor;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Lazysoft\Wufor\Services\Wofur\TelegramService;
+use Lazysoft\Wufor\Services\WofurService;
 
 class WuforServiceProvider extends ServiceProvider
 {
@@ -37,7 +39,7 @@ class WuforServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function registerRoutes()
+    protected function registerRoutes()
     {
         Route::group(
             [
@@ -64,7 +66,7 @@ class WuforServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function registerPublishing()
+    protected function registerPublishing()
     {
         if ($this->app->runningInConsole()) {
             $this->publishes(
