@@ -16,6 +16,7 @@ class WuforServiceProvider extends ServiceProvider
     {
         Route::middlewareGroup("wufor_api", config("wufor.api_middleware", []));
         Route::middlewareGroup("wufor_web", config("wufor.web_middleware", []));
+        $this->registerFacades();
         $this->registerRoutes();
         $this->registerPublishing();
         $this->loadMigrationsFrom(__DIR__ . "/../database/migrations");
@@ -80,5 +81,16 @@ class WuforServiceProvider extends ServiceProvider
                 "wofur-config"
             );
         }
+    }
+
+    protected function registerFacades()
+    {
+        $this->app->singleton("Wofur", function ($app) {
+            return new WofurService($app);
+        });
+
+        $this->app->singleton("telegram", function ($app) {
+            return new TelegramService();
+        });
     }
 }
