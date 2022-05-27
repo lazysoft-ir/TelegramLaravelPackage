@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     // route prefixes
     "path" => "telegram",
     // route middlewares
@@ -9,12 +8,13 @@ return [
     "web_middleware" => ["web"],
 
     //
-    "bots" => explode(',', env('WOFUR_BOT_TOKENS')),
+    "bots" => explode(",", env("WOFUR_BOT_TOKENS")),
 
     // if you need proxy
-    "proxy" => env('WOFUR_PROXY', null),
+    "proxy" => env("WOFUR_PROXY", null),
 
     // if you want to use file system and share files between bots
-    "file_share_group" => env('WOFUR_FILE_SHARE_GROUP_ID', null),
+    "file_share_group" => env("WOFUR_FILE_SHARE_GROUP_ID", null),
 
+    "wofur_default_driver" => "telegram",
 ];

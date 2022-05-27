@@ -4,6 +4,8 @@ namespace Lazysoft\Wufor;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Lazysoft\Wufor\Services\Wofur\TelegramService;
+use Lazysoft\Wufor\Services\WofurService;
 
 class WuforServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,7 @@ class WuforServiceProvider extends ServiceProvider
     {
         Route::middlewareGroup("wufor_api", config("wufor.api_middleware", []));
         Route::middlewareGroup("wufor_web", config("wufor.web_middleware", []));
+        $this->registerFacades();
         $this->registerRoutes();
         $this->registerPublishing();
         $this->loadMigrationsFrom(__DIR__ . "/../database/migrations");
@@ -36,7 +39,7 @@ class WuforServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function registerRoutes()
+    protected function registerRoutes()
     {
         Route::group(
             [
@@ -63,7 +66,7 @@ class WuforServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function registerPublishing()
+    protected function registerPublishing()
     {
         if ($this->app->runningInConsole()) {
             $this->publishes(
@@ -80,5 +83,16 @@ class WuforServiceProvider extends ServiceProvider
                 "wofur-config"
             );
         }
+    }
+
+    protected function registerFacades()
+    {
+        $this->app->singleton("Wofur", function ($app) {
+            return new WofurService($app);
+        });
+
+        $this->app->singleton("telegram", function ($app) {
+            return new TelegramService();
+        });
     }
 }

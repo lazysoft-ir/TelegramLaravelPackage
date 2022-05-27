@@ -2,8 +2,8 @@
 
 namespace Lazysoft\Wufor\Http\Controllers;
 
-use App\Http\Controllers\Controller as ControllersController;
+use Illuminate\Routing\Controller as RoutingController;
 
-class Controller extends ControllersController
+class Controller extends RoutingController
 {
 }
